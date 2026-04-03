@@ -218,7 +218,7 @@
       "上のイラストは太陽、下のイラストは土を表しています。<br>太陽と土の間にあるものを考え、1文字ずつ当てはめてみましょう。",
       "太陽、5つのもの、土、あわせて7つのものが１セットです。",
       "これらは曜日を表しているようです。<br>曜日を順に四角の中に入れて、✕に当てはまる文字を考えましょう。",
-      "それぞれの四角には「げつかすいもくきん」が入ります。黒い枠には「かすい」が入り、並び替えるとすいかとなります。<br>答えは「きき」です。",
+      "それぞれの四角には「げつかすいもくきん」が入ります。黒い枠には「かすい」が入り、並び替えるとすいかとなります。<br>答えは「きき」です。"
     ],
     tate5: [
       "黒い直線が壁を表しています。",
@@ -409,11 +409,16 @@
     
     let html = '';
     hintsToShow.forEach((hint, index) => {
+      // ★最後の項目（答えと解説）かどうかの判定を追加
+      const isLastItem = index === currentHints.length - 1;
+      const labelText = isLastItem ? "答えと解説" : `ヒント ${index + 1}/${currentHints.length - 1}`;
+      const badgeClass = isLastItem ? "bg-red-100 text-red-700" : "bg-orange-100 text-orange-700";
+
       html += `
         <div class="fade-in mb-6">
           <div class="flex items-center gap-2 mb-2">
-            <span class="bg-orange-100 text-orange-700 text-xs font-bold px-2 py-1 rounded">
-              ヒント ${index + 1}/${currentHints.length}
+            <span class="${badgeClass} text-xs font-bold px-2 py-1 rounded">
+              ${labelText}
             </span>
           </div>
           <div class="bg-orange-50 border-l-4 border-orange-400 p-4 rounded-r-lg text-gray-800 leading-relaxed font-medium">
